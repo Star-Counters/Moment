@@ -1,0 +1,37 @@
+{
+    "_gdeSchema_Sheet1": {
+        "name": "",
+        "_gdeType_name": "String",
+        "score": 0,
+        "_gdeType_score": "Int",
+        "id": 0,
+        "_gdeType_id": "Int"
+    },
+    "fenglinan": {
+        "name": "fenglinan_name",
+        "_gdeType_name": "String",
+        "score": 120,
+        "_gdeType_score": "Int",
+        "id": 2,
+        "_gdeType_id": "Int",
+        "_gdeSchema": "Sheet1"
+    },
+    "hujintao": {
+        "name": "hujintao_name",
+        "_gdeType_name": "String",
+        "score": 40,
+        "_gdeType_score": "Int",
+        "id": 4,
+        "_gdeType_id": "Int",
+        "_gdeSchema": "Sheet1"
+    },
+    "zhaoye": {
+        "name": "zhaoye_name",
+        "_gdeType_name": "String",
+        "score": 50,
+        "_gdeType_score": "Int",
+        "id": 1,
+        "_gdeType_id": "Int",
+        "_gdeSchema": "Sheet1"
+    }
+}

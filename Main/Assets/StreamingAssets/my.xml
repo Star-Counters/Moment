@@ -1,0 +1,61 @@
+<gameObjects>
+  <scenes name="Assets/tet.unity">
+    <gameObjects name="Sphere" asset="Sphere.prefab">
+      <transform>
+        <position>
+          <x>0</x>
+          <y>0</y>
+          <z>0</z>
+        </position>
+        <rotation>
+          <x>0</x>
+          <y>0</y>
+          <z>0</z>
+        </rotation>
+        <scale>
+          <x>1</x>
+          <y>1</y>
+          <z>1</z>
+        </scale>
+      </transform>
+    </gameObjects>
+    <gameObjects name="Cube" asset="Cube.prefab">
+      <transform>
+        <position>
+          <x>0</x>
+          <y>0</y>
+          <z>-4.584394</z>
+        </position>
+        <rotation>
+          <x>0</x>
+          <y>0</y>
+          <z>0</z>
+        </rotation>
+        <scale>
+          <x>1</x>
+          <y>1</y>
+          <z>1</z>
+        </scale>
+      </transform>
+    </gameObjects>
+    <gameObjects name="Main Camera" asset="Main Camera.prefab">
+      <transform>
+        <position>
+          <x>0</x>
+          <y>1</y>
+          <z>-10</z>
+        </position>
+        <rotation>
+          <x>0</x>
+          <y>0</y>
+          <z>0</z>
+        </rotation>
+        <scale>
+          <x>1</x>
+          <y>1</y>
+          <z>1</z>
+        </scale>
+      </transform>
+    </gameObjects>
+  </scenes>
+</gameObjects>

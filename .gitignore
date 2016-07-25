@@ -1,0 +1,12 @@
+Main/Library
+Main/Assets/UnityVS
+Main/Temp
+Main/Main-csharp.sln.ide
+Main/UnityVS.Main.sln.ide
+Main/Assets/UnityVS.meta
+Main/obj
+Main/Main.userprefs
+*.csproj
+*.unityproj
+*.sln
+*.suo
