@@ -13,7 +13,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 		
 		// The current index that we are heading towards within the waypoints array
 		private int waypointIndex;
-		private float waypointReachedTime;
+        //TODO:
+		public float waypointReachedTime;
 		MoveUtility moveUtility ;
         //TODO:set to 3D
         private const int range = 4;
@@ -27,24 +28,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public override void OnStart()
 		{
 			base.OnStart();
-			
-			// initially move towards the closest waypoint
-			//float distance = Mathf.Infinity;
-			//float localDistance;
-			//for (int i = 0; i < waypoints.Value.Count; ++i) {
-			//	localDistance = Vector3.Magnitude(transform.position - waypoints.Value[i].position);
-			//	if (localDistance < distance) {
-			//		distance = localDistance;
-			//		waypointIndex = i;
-			//	}
-			//}
-			waypointReachedTime = -waypointPauseDuration.Value;
+            transform.GetComponent<Animator>().SetBool("Run", true);
+
+            // initially move towards the closest waypoint
+            //float distance = Mathf.Infinity;
+            //float localDistance;
+            //for (int i = 0; i < waypoints.Value.Count; ++i) {
+            //	localDistance = Vector3.Magnitude(transform.position - waypoints.Value[i].position);
+            //	if (localDistance < distance) {
+            //		distance = localDistance;
+            //		waypointIndex = i;
+            //	}
+            //}
+            waypointReachedTime = -waypointPauseDuration.Value;
 			moveUtility = MoveUtility.CreateMoveUtilityInstance(transform);
             moveUtility.targetFollow = FindNextTarget();
 			moveUtility.FollowTarget ();
 			moveUtility.OnTargetReached += OnReached;
-			//navMeshAgent.destination = Target();
-		}
+            //navMeshAgent.destination = Target();
+        }
 		public override void OnEnd ()
 		{
 			base.OnEnd ();			
@@ -52,17 +54,16 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 		}
 		private void OnReached(){
 			Vector3 thisPosition = transform.position;
-			if (waypointReachedTime == -waypointPauseDuration.Value) {
-				waypointReachedTime = Time.time;
+
+            //Begin to walk to next waypoint.
+			if (waypointReachedTime == -waypointPauseDuration.Value)
+            {
+                transform.GetComponent<Animator>().SetBool("Run", false);
+                waypointReachedTime = Time.time;
 			}
 			// wait the required duration before switching waypoints.
 			if (waypointReachedTime + waypointPauseDuration.Value <= Time.time) {
-				//if (randomPatrol.Value) {
-				//	waypointIndex = Random.Range(0, waypoints.Value.Count);
-				//} else {
-				//	waypointIndex = (waypointIndex + 1) % waypoints.Value.Count;
-				//}
-				//Debug.Log(waypointIndex);
+                transform.GetComponent<Animator>().SetBool("Run", true);
 				moveUtility.targetFollow = FindNextTarget();
 				waypointReachedTime = -waypointPauseDuration.Value;
 			}

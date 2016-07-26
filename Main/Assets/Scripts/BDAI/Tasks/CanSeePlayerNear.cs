@@ -18,7 +18,6 @@ namespace BehaviorDesigner.Runtime.Tasks
 		public override void OnStart ()
 		{
 			base.OnStart();
-			Debug.Log ("OnStart");
 			if (targetObject==null) {
 				targetObject = PlayerController.Instance.transform;
 			}

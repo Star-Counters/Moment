@@ -52,7 +52,7 @@ public class CombatPanel : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.D)){
+		if(Input.GetKeyDown(KeyCode.Space)){
 			if(MainButtonDown!=null)
 				OnPressMainButton(gameObject,true);
 		}
@@ -65,7 +65,7 @@ public class CombatPanel : MonoBehaviour {
 	//	GUI.Label (new Rect (300, 0, 200, 50), navigator.rotation.ToString());
 	//}
 	void OnDrag(float x,float y){
-		navigator.rotation = Quaternion.Euler(new Vector3(0, 0,- Mathf.Atan2 (x, y)*180.0f/Mathf.PI));
+		navigator.rotation = Quaternion.Euler(new Vector3(0, 0,45 - Mathf.Atan2 (x, y)*180.0f/Mathf.PI));
 	}
 	public void InitHeart(){
 

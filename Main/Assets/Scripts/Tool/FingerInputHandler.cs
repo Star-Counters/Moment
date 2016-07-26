@@ -60,17 +60,32 @@ public class FingerInputHandler : MonoBehaviour {
 	void Update(){
 #if UNITY_EDITOR
 		if(useKeyBoard){
-			if(isAxisDown){
-				CombatPanel.Instance.gameObject.SetActive (true);
-			}
+			if(isAxisDown)
+            {
+                if (PlayerController.Instance.groundType == GroundType.Road || PlayerController.Instance.groundType == GroundType.Slope)
+                    PlayerController.Instance.ChangeState(PlayerState.Run);
+                CombatPanel.Instance.OnSetActive(true);
+                //CombatPanel.Instance.gameObject.SetActive (true);
+            }
 			else if(isAxis){
 				outX = Input.GetAxis ("Horizontal");
 				outY = Input.GetAxis ("Vertical");
-				MainSceneDrag(outX,outY);	
-			}
+                dragging = true;
+                MainSceneDrag(outX,outY);
+
+                //dragging = true;
+                //dragDirection = gesture.Position - fingerDownPos;
+                //dragDirection.Normalize();
+                //if (MainSceneDrag != null)
+                //    MainSceneDrag(dragDirection.x, dragDirection.y);
+            }
 			else if(isAxisUp){
-				CombatPanel.Instance.gameObject.SetActive (false);
-			}
+                //CombatPanel.Instance.gameObject.SetActive (false);
+                dragging = false;
+                if (PlayerController.Instance.groundType == GroundType.Road || PlayerController.Instance.groundType == GroundType.Slope)
+                    PlayerController.Instance.ChangeState(PlayerState.Idle);
+                CombatPanel.Instance.OnSetActive(false);
+            }
 		}
 #endif
 	}
@@ -97,14 +112,16 @@ public class FingerInputHandler : MonoBehaviour {
 		}
 	}
 	void OnFingerDown( FingerDownEvent e )
-	{	
-		if(UICamera.isOverUI)
-			return;
+	{
+        if (UICamera.isOverUI || useKeyBoard)
+            return;
 		fingerDownPos = e.Position;
 		CombatPanel.Instance.OnSetActive (true);
 	}
 	void OnFingerUp( FingerUpEvent e ){
-		CombatPanel.Instance.OnSetActive (false);
+        if (useKeyBoard)
+            return;
+        CombatPanel.Instance.OnSetActive (false);
 	}
 	void OnPause(bool isPause){
 		GetComponent<FingerDownDetector>().UseSendMessage=!isPause;

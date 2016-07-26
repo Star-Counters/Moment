@@ -57,7 +57,6 @@ namespace BehaviorDesigner.Runtime.Tasks
         }
         public override void OnEnd()
         {
-            Debug.Log("Chase.OnEnd!");
             //chaseTimeTask.curChaseTime = 3;
             base.OnEnd();
             //arriveDistance = 0.1f;

@@ -346,8 +346,9 @@ public sealed class MoveUtility {
 				}
 				//Debug.DrawLine (tr.position, tg, lastCorner ? Color.red : Color.green);					
 				if (endPointIsTarget) {
-					Vector3 trotdir = Vector3.Lerp(velocity,currentTargetDirection, System.Math.Max (1 - magn*2,0));
-					RotateTowards(trotdir);
+					//Vector3 trotdir = Vector3.Lerp(velocity,currentTargetDirection, System.Math.Max (1 - magn*2,0));
+                    RotateTowards(velocity);
+                    //RotateTowards(trotdir);
 				} 
 				else {
 					RotateTowards(velocity);
@@ -396,15 +397,16 @@ public sealed class MoveUtility {
 	}
 	/** Rotates along the Y-axis the transform towards \a trotdir */
 	bool RotateTowards (Vector3 trotdir) {
-		Quaternion rot = transform.rotation;
 		trotdir.y = 0;
 		if (trotdir != Vector3.zero) {
 			Vector3 trot = Quaternion.LookRotation (trotdir).eulerAngles;
-			Vector3 eul = rot.eulerAngles;
-			eul.y = Mathf.MoveTowardsAngle(eul.y,trot.y,rotationSpeed*deltaTime);
-			transform.rotation = Quaternion.Euler(eul);
-			//Magic number, should expose as variable
-			return Mathf.Abs(eul.y-trot.y) < 5f;
+            Vector3 eul = transform.rotation.eulerAngles;
+            //eul.y = Mathf.MoveTowardsAngle(eul.y,trot.y,rotationSpeed*deltaTime);
+            //transform.rotation = Quaternion.Euler(eul);
+            //No 
+            transform.rotation = Quaternion.Euler(new Vector3(eul.x, trot.y, eul.z));
+            //TODO:Magic number, should expose as variable
+            return Mathf.Abs(eul.y-trot.y) < 5f;
 		}
 		return false;
 	}
